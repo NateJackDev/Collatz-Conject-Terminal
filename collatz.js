@@ -8,7 +8,7 @@
 //  / /|  / /_/ / /_/  __/ /_/ / /_/ / /__/ ,< / /_/ /  __/ |/ /
 // /_/ |_/\__,_/\__/\___/\____/\__,_/\___/_/|_/_____/\___/|___/
 
-// Project 1 collatz(magic)
+// Project 1 collatz(n)
 // To Start off this project we first have to understand the rules of the Collatz Conjecture
 
 // 1. Pick a number and if that number is odd then you plug the number into n = 3n + 1
@@ -28,39 +28,33 @@ console.log("Another additional feature is you can loop threw a series of number
 console.log("To run it, write a minumum and a maxium number in the console\nrepeat(minumun, maxium) Ex. repeat(50, 100)");
 
 // Function to determine if the number given by the user is even of odd
-function isEven(n) {
-  n = Number(n);
-  return n === 0 || !!(n && !(n%2));
+function isEven(a) {
+  a = Number(a);
+  return a === 0 || !!(a && !(a%2));
 }
 
-
-// Write a Function for the conjecture
-function collatz(magic){
-  let end = magic;
-  let op;
-  let num = 0;
-  while(magic != 1){
-    num = num + 1;
-    op = isEven(magic);
+// Collatz Conjecture
+function collatz(n){
+  const number = n;
+  let counter = 0;
+  do{    
+    counter += 1;
     // Condition
-    if(op === true){
-      magic = magic * 0.5;
-      // console.log(magic); <= Testing
-    }else if(magic === 1){
+    if(isEven(n) === true){
+      n = n * 0.5;
+    }else if(n === 1){
       break;
-      // console.log(magic); <= Testing
-    }else{
-      magic = magic * 3 + 1;
-      // console.log(magic); <= Testing
     }
-  }
-   console.log(end + " took '" + num + "' times to get to 1");
+    else{
+      n = n * 3 + 1;}
+  } while(n != 1)
+  console.log(number + "=>" + counter);
 }
 
 function repeat(min, max){
   let op;
   let num = 0;
   for(let i = min; i <= max; i++){
-    console.log(collatz(i));
+    document.write(collatz(i));
   }
 }
